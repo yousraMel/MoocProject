@@ -26,7 +26,7 @@ public class Certification implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long certificationId;
+	private Long idCertification;
 	private String title;
 	@JsonFormat(shape =JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
 	private Date creationDate;

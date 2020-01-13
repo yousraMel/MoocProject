@@ -25,7 +25,7 @@ public class Video implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long videoId;
+	private Long idVideo;
 	private String title;
 	private String format;
 	@JsonFormat(shape =JsonFormat.Shape.STRING, pattern = "KK:mm:ss")

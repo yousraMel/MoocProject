@@ -1,7 +1,5 @@
 package com.inti.formation.entities;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,15 +8,21 @@ import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Data @AllArgsConstructor @NoArgsConstructor @ToString
-public class Admin implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class Organism {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long idAdmin;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long idOrganism;
+	private String organismName;
+	private String organismSpeciality;
+	private String organismDocumentation;
+	private String turnover;
 	private String email;
+	private String phoneNumber;
+	private String webSite;
 	private String password;
-	private String roles;
+	
 }

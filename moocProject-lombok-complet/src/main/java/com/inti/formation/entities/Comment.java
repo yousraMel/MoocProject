@@ -27,7 +27,7 @@ public class Comment implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long commentId;
+	private Long idComment;
 	private String body;
 	@JsonFormat(shape =JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date creationDate;

@@ -29,7 +29,7 @@ public class Course implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long CourseId;
+	private Long idCourse;
 	private String title;
 	@JsonFormat(shape =JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date createDate;
