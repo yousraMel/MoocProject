@@ -1,22 +1,25 @@
 package com.inti.formation.entities;
 
-import javax.persistence.Entity;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-
-public class Quiz {
+@MappedSuperclass
+public abstract class Quiz {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idQuiz;
-	private String quizType;
+	@OneToMany(targetEntity = Question.class, fetch = FetchType.LAZY, mappedBy= "quiz",cascade = CascadeType.ALL)
+	private List<Question> questions; 
+	
+	
 	
 }

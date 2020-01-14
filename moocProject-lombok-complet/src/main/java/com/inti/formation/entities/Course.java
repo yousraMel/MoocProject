@@ -2,13 +2,19 @@ package com.inti.formation.entities;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.inti.formation.enumeration.AccountType;
@@ -35,7 +41,7 @@ public class Course implements Serializable {
 	private Date createDate;
 	@JsonFormat(shape =JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
 	private Date updateDate;
-	 @Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING)
 	private Level level;
 	private String duration;
 	private String keyWords;
@@ -45,5 +51,10 @@ public class Course implements Serializable {
 	private double note;
 	private AccountType accountType;
 	private String language;
+	@OneToOne
+	@JoinColumn(unique=true,nullable=true)
+	private QuizCourse quiz;
+	@OneToMany(targetEntity = Chapter.class, fetch = FetchType.LAZY, mappedBy= "course",cascade = CascadeType.ALL)
+	private List<Chapter> chapters;
 	
 }

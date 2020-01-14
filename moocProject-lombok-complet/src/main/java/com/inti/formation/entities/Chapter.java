@@ -7,8 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
- 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,5 +31,12 @@ public class Chapter implements Serializable {
 	private String title;
 	private String content;
 	private String description;
-	private String video;
+	@OneToOne
+	@JoinColumn(unique=true,nullable=true)
+	private QuizChapter quiz;
+	@ManyToOne
+	@JoinColumn(name="course_id")
+	private Course course;
+	
+	
 }

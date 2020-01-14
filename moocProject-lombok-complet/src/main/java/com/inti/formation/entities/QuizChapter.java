@@ -2,12 +2,17 @@ package com.inti.formation.entities;
 
 import javax.persistence.Entity;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 
-@Data
+@EqualsAndHashCode(callSuper=false)
 @Entity
-
-public class QuizChapter {
+@AllArgsConstructor
+@NoArgsConstructor
+public class QuizChapter extends Quiz{
+	
+	private String quizType;
 
 }
