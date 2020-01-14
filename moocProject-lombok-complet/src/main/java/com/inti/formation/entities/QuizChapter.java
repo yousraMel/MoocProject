@@ -8,6 +8,6 @@ import lombok.Data;
 @Data
 @Entity
 
-public class Quiz_Chapter {
+public class QuizChapter {
 
 }

@@ -6,6 +6,6 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Quiz_Course {
+public class QuizCourse {
 
 }
