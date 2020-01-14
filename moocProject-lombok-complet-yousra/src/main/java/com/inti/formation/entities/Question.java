@@ -8,8 +8,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.inti.formation.enumeration.AccountType;
+import com.inti.formation.enumeration.QuestionState;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,20 +22,20 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Learner {
-
+public class Question{
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idLearner;
-	private String firstName;
-	private String lastName;
-	@JsonFormat(pattern = "yyyy-MM-dd")
-	private Date birthDate;
-	private String email;
-	private String password;
-	private String country;
-	private String phoneNumber;
+	private Long idQuestion;
+	private int numero;
+	private String content;
+	private String answer;
 	@Enumerated(EnumType.STRING)
-	private AccountType accountType;
-
+	private QuestionState questionState;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "mm:ss")
+	private Date chrono;
+	@ManyToOne
+	@JoinColumn(name = "quiz_id")
+	private Quiz quiz;
+	
 }

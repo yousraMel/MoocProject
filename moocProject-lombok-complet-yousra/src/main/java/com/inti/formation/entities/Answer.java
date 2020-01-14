@@ -8,15 +8,17 @@ import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-
-public class Quiz {
+public class Answer {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long idQuiz;
-	private String quizType;
+	private Long idAnswer;
+	private String answerContent;
 	
+
 }
