@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 
 import com.inti.formation.entities.Comment;
 import com.inti.formation.iservices.ICommentService;
-import com.inti.formation.repositories.CommentRepository;
+import com.inti.formation.repositories.ICommentRepository;
 
 @Service
 public class CommentService implements ICommentService {
 	
 	@Autowired
-	private CommentRepository repo;
+	private ICommentRepository repo;
 	
 	@Override
 	public Comment saveOrUpdateComment(Comment c) {

@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 
 import com.inti.formation.entities.Certification;
 import com.inti.formation.iservices.ICertificationService;
-import com.inti.formation.repositories.CertificationRepository;
+import com.inti.formation.repositories.ICertificationRepository;
 
 @Service
 public class CertificationService implements ICertificationService {
 	
 	@Autowired
-	private CertificationRepository repo;
+	private ICertificationRepository repo;
 
 	@Override
 	public Certification saveOrUpdateCertification(Certification c) {

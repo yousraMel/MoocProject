@@ -24,19 +24,5 @@ public class Committee implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idCommittee;
 	private String committeeName;
-	private static int nbrOfMemebers;
-
-	public Committee(String committeeName) {
-		this.committeeName = committeeName;
-		setNbrOfMemebers(getNbrOfMemebers() + 1);
-	}
-
-	public static int getNbrOfMemebers() {
-		return nbrOfMemebers;
-	}
-
-	public static void setNbrOfMemebers(int nbrOfMemebers) {
-		Committee.nbrOfMemebers = nbrOfMemebers;
-	}
 
 }

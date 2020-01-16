@@ -18,6 +18,7 @@ import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.inti.formation.enumeration.AccountType;
+import com.inti.formation.enumeration.CourseState;
 import com.inti.formation.enumeration.Level;
 
 import lombok.AllArgsConstructor;
@@ -46,9 +47,10 @@ public class Course implements Serializable {
 	private String duration;
 	private String keyWords;
 	private String description;
-	private String state;
+	@Enumerated(EnumType.STRING)
+	private CourseState state; 
 	private String objectives;
-	private double note;
+//	private double courseNote;
 	private AccountType accountType;
 	private String language;
 	@OneToOne

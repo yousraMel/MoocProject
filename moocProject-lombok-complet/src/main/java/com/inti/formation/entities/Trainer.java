@@ -48,7 +48,7 @@ public class Trainer implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
 	@Enumerated(EnumType.STRING)
-	private TrainerState trainerState;
+	private TrainerState trainerState = TrainerState.notYetValidated;
 	
 
 	

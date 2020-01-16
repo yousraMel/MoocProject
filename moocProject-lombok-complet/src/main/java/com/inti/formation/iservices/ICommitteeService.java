@@ -10,5 +10,6 @@ public interface ICommitteeService {
 	public void deleteCommittee(Long id);
 	public Committee getByIdCommittee(Long id);
 	public List<Committee> getAllCommittee();
+	public int getNbrOfMembersCommittee(Long idCommittee);
 
 }

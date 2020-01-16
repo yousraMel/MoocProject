@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 
 import com.inti.formation.entities.Committee;
 import com.inti.formation.iservices.ICommitteeService;
-import com.inti.formation.repositories.CommitteRepository;
+import com.inti.formation.repositories.ICommitteRepository;
 
 @Service
 public class CommitteeService implements ICommitteeService {
 	
 	@Autowired
-	private CommitteRepository repo;
+	private ICommitteRepository repo;
 
 	@Override
 	public Committee saveOrUpdateCommittee(Committee c) {
@@ -33,6 +33,11 @@ public class CommitteeService implements ICommitteeService {
 	@Override
 	public List<Committee> getAllCommittee() {
 		return repo.findAll();
+	}
+
+	@Override
+	public int getNbrOfMembersCommittee(Long idCommittee) {
+		return repo.nbrOfMembers(idCommittee);
 	}
 
 }

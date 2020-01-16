@@ -10,5 +10,6 @@ public interface ICourseService {
 	public void deleteCourse(Long id);
 	public Course getByIdCourse(Long id);
 	public List<Course> getAllCourse();
+	public double getCourseNote(Long id);
 	
 }

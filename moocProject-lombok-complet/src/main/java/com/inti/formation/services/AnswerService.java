@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.inti.formation.entities.Answer;
+import com.inti.formation.entities.Choice;
 import com.inti.formation.iservices.IAnswerService;
 import com.inti.formation.repositories.IAnswerRepository;
 @Service
@@ -15,7 +15,7 @@ public class AnswerService implements IAnswerService{
 		
 		
 		@Override
-		public Answer saveOrUpdateAnswer(Answer u) {
+		public Choice saveOrUpdateAnswer(Choice u) {
 			// TODO Auto-generated method stub
 			return repo.save(u);
 		}
@@ -27,13 +27,13 @@ public class AnswerService implements IAnswerService{
 		}
 
 		@Override
-		public Answer getByIdAnswer(Long id) {
+		public Choice getByIdAnswer(Long id) {
 			// TODO Auto-generated method stub
 			return repo.findById(id).get();
 		}
 
 		@Override
-		public List<Answer> getAllAnswer() {
+		public List<Choice> getAllAnswer() {
 			// TODO Auto-generated method stub
 			return repo.findAll();
 		}

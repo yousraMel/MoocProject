@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.inti.formation.entities.Answer;
+import com.inti.formation.entities.Choice;
 import com.inti.formation.iservices.IAnswerService;
 @RestController
 @RequestMapping("/apiAnswer")
@@ -20,21 +20,21 @@ public class AnswerWebService {
 	private IAnswerService service;
 
 	@RequestMapping(value = "/saveAnswer", method = RequestMethod.POST)
-	public Answer save(@RequestBody Answer u) {
+	public Choice save(@RequestBody Choice u) {
 
 		return service.saveOrUpdateAnswer(u);
 
 	}
 
 	@RequestMapping(value = "/updateAnswer", method = RequestMethod.PUT)
-	public Answer update(@RequestBody Answer u) {
+	public Choice update(@RequestBody Choice u) {
 
 		return service.saveOrUpdateAnswer(u);
 
 	}
 
 	@RequestMapping(value = "/getByIdAnswer/{id}", method = RequestMethod.GET)
-	public Answer getById(@PathVariable("id") Long id) {
+	public Choice getById(@PathVariable("id") Long id) {
 
 		return service.getByIdAnswer(id);
 
@@ -48,7 +48,7 @@ public class AnswerWebService {
 	}
 	
 	@RequestMapping(value="/getAllAnswer",method=RequestMethod.GET)
-	public List<Answer> findAll(){
+	public List<Choice> findAll(){
 		
 		return service.getAllAnswer();
 		
