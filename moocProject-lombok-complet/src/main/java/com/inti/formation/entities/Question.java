@@ -1,45 +1,101 @@
 package com.inti.formation.entities;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.inti.formation.enumeration.QuestionState;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class Question{
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idQuestion;
-	private int numero;
-	private String content;
-	private String answer;
-	@Enumerated(EnumType.STRING)
-	private QuestionState questionState;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "mm:ss")
-	private Date chrono;
+@Table(name = "question")
+public class Question extends BaseModel {
+
+	@Size(min = 2, max = 150, message = "The question should be between 2 and 150 characters")
+	@NotNull(message = "Question text not provided")
+	private String text;
+
 	@ManyToOne
-	@JoinColumn(name = "quiz_id")
+	@JsonIgnore
 	private Quiz quiz;
-	@OneToMany(mappedBy ="question")
-	private List<Choice> choices;
-	
+
+	@Column(name = "q_order")
+	private Integer order;
+
+	//@JsonIgnore
+	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Answer> answers;
+
+	@JsonIgnore
+	@OneToOne
+	private Answer correctAnswer;
+
+	@Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
+	private Calendar createdDate;
+
+	@JsonIgnore
+	private Boolean isValid = false;
+
+	public Calendar getCreatedDate() {
+		return createdDate;
+	}
+
+	public List<Answer> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
+	}
+
+	public Quiz getQuiz() {
+		return quiz;
+	}
+
+	public void setQuiz(Quiz quiz) {
+		this.quiz = quiz;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+
+	public Integer getOrder() {
+		return order;
+	}
+
+	public void setOrder(Integer order) {
+		this.order = order;
+	}
+
+	public Boolean getIsValid() {
+		return isValid;
+	}
+
+	public void setIsValid(Boolean isValid) {
+		this.isValid = isValid;
+	}
+
+	public Answer getCorrectAnswer() {
+		return correctAnswer;
+	}
+
+	public void setCorrectAnswer(Answer correctAnswer) {
+		this.correctAnswer = correctAnswer;
+	}
+
 }

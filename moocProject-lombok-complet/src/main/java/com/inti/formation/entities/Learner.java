@@ -44,6 +44,6 @@ public class Learner {
 	private Set<EvaluationQuiz> evaluationQuizs = new HashSet<EvaluationQuiz>();
 	@OneToOne
 	@JoinColumn(name= "choice_id")
-	private Choice choice;
+	private Answer choice;
 
 }

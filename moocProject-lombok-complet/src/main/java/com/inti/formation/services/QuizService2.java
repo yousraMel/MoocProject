@@ -17,23 +17,25 @@ import com.inti.formation.exceptions.InvalidParametersException;
 import com.inti.formation.exceptions.ResourceUnavailableException;
 import com.inti.formation.iservices.IQuestionService;
 import com.inti.formation.iservices.IQuizService;
+import com.inti.formation.iservices.IQuizService2;
 import com.inti.formation.repositories.QuizRepository;
+import com.inti.formation.repositories.QuizRepository2;
 import com.inti.formation.support.Response;
 import com.inti.formation.support.Result;
 
 
 
-@Service("QuizService")
+@Service("QuizService2")
 @Transactional
-public class QuizService implements IQuizService {
+public class QuizService2 implements IQuizService2 {
 
-	private static final Logger logger = LoggerFactory.getLogger(QuizService.class);
-	private QuizRepository quizRepository;
+	private static final Logger logger = LoggerFactory.getLogger(QuizService2.class);
+	private QuizRepository2 quizRepository;
 
 	private IQuestionService questionService;
 
 	@Autowired
-	public QuizService(QuizRepository quizRepository, IQuestionService questionService) {
+	public QuizService2(QuizRepository2 quizRepository, IQuestionService questionService) {
 		this.quizRepository = quizRepository;
 		this.questionService = questionService;
 	}
@@ -44,13 +46,13 @@ public class QuizService implements IQuizService {
 	}
 
 	@Override
-	public List<Quiz> findAll() {
-		return quizRepository.findAll();
+	public Page<Quiz> findAll(Pageable pageable) {
+		return quizRepository.findAll(pageable);
 	}
 
 	@Override
-	public List<Quiz> findAllPublished() {
-		return quizRepository.findByIsPublishedTrue();
+	public Page<Quiz> findAllPublished(Pageable pageable) {
+		return quizRepository.findByIsPublishedTrue(pageable);
 	}
 
 	@Override
@@ -84,8 +86,8 @@ public class QuizService implements IQuizService {
 	}
 
 	@Override
-	public List<Quiz> search(String query) {
-		return quizRepository.searchByName(query);
+	public Page<Quiz> search(String query, Pageable pageable) {
+		return quizRepository.searchByName(query, pageable);
 	}
 
 //	@Override

@@ -33,7 +33,7 @@ public class Chapter implements Serializable {
 	private String description;
 	@OneToOne
 	@JoinColumn(unique=true,nullable=true)
-	private QuizChapter quiz;
+	private Quiz quiz;
 	@ManyToOne
 	@JoinColumn(name="course_id")
 	private Course course;

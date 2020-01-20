@@ -41,8 +41,14 @@ public class CourseWebService {
 	}
 	
 	@RequestMapping(value="/getAll", method=RequestMethod.GET)
-	public List<Course> findAll() {
+	public List<Course> findAll(){
 		return service.getAllCourse();
+	}
+	
+	@RequestMapping(value="/courseNote", method=RequestMethod.GET)
+	public Course getCourseNote(@PathVariable("id") Long idCourse) {
+		service.getByIdCourse(idCourse).setCourseNote(service.getCourseNote(idCourse));
+		return  service.getByIdCourse(idCourse);
 	}
 
 }

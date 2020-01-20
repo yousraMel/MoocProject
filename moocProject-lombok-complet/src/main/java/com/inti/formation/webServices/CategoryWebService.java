@@ -14,14 +14,16 @@ import com.inti.formation.entities.Category;
 import com.inti.formation.iservices.ICategoryService;
 
 @RestController
-@RequestMapping("/apiCategory")
+@RequestMapping(QuizWebService.ROOT_MAPPING)
 @CrossOrigin("*")
 public class CategoryWebService {
+	
+	public static final String ROOT_MAPPING = "/apiCategory";
 
 	@Autowired
 	private ICategoryService service;
 	
-	@RequestMapping(value="/save", method=RequestMethod.POST)
+	@RequestMapping(value="/savecategory", method=RequestMethod.POST)
 	public Category saveCategory (@RequestBody Category c) {
 		return service.saveOrUpdateCategory(c);
 	}

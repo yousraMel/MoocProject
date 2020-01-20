@@ -2,57 +2,86 @@ package com.inti.formation.webServices;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+//import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.inti.formation.entities.Choice;
-import com.inti.formation.iservices.IAnswerService;
+import com.inti.formation.entities.Answer;
+import com.inti.formation.entities.Question;
+import com.inti.formation.services.AnswerService;
+import com.inti.formation.services.QuestionService;
+import com.inti.formation.utils.RestVerifier;
+
+
 @RestController
-@RequestMapping("/apiAnswer")
+@RequestMapping(AnswerWebService.ROOT_MAPPING)
 public class AnswerWebService {
 
+	public static final String ROOT_MAPPING = "/api/answers";
 
 	@Autowired
-	private IAnswerService service;
+	AnswerService answerService;
 
-	@RequestMapping(value = "/saveAnswer", method = RequestMethod.POST)
-	public Choice save(@RequestBody Choice u) {
+	@Autowired
+	QuestionService questionService;
 
-		return service.saveOrUpdateAnswer(u);
+	@RequestMapping(value = "", method = RequestMethod.POST)
+//	@PreAuthorize("isAuthenticated()")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Answer save(@Valid Answer answer, BindingResult result, @RequestParam long question_id) {
 
+		RestVerifier.verifyModelResult(result);
+
+		Question question = questionService.find(question_id);
+		return questionService.addAnswerToQuestion(answer, question);
 	}
 
-	@RequestMapping(value = "/updateAnswer", method = RequestMethod.PUT)
-	public Choice update(@RequestBody Choice u) {
+	@RequestMapping(value = "/updateAll", method = RequestMethod.POST)
+//	@PreAuthorize("isAuthenticated()")
+	@ResponseStatus(HttpStatus.OK)
+	public void updateAll(@RequestBody List<Answer> answers) {
+		for (int i = 0; i < answers.size(); i++) {
+			Answer answer = answers.get(i);
+			answer.setOrder(i + 1);
 
-		return service.saveOrUpdateAnswer(u);
-
+			answerService.update(answer);
+		}
 	}
 
-	@RequestMapping(value = "/getByIdAnswer/{id}", method = RequestMethod.GET)
-	public Choice getById(@PathVariable("id") Long id) {
+	@RequestMapping(value = "/{answer_id}", method = RequestMethod.GET)
+//	@PreAuthorize("permitAll")
+	@ResponseStatus(HttpStatus.OK)
+	public Answer find(@PathVariable Long answer_id) {
 
-		return service.getByIdAnswer(id);
-
-	}
-	
-	@RequestMapping(value="/deleteByIdAnswer/{id}",method=RequestMethod.DELETE)
-	public void delete(@PathVariable("id") Long id) {
-		
-		 service.deleteByIdAnswer(id);
-		
-	}
-	
-	@RequestMapping(value="/getAllAnswer",method=RequestMethod.GET)
-	public List<Choice> findAll(){
-		
-		return service.getAllAnswer();
-		
+		return answerService.find(answer_id);
 	}
 
+	@RequestMapping(value = "/{answer_id}", method = RequestMethod.POST)
+//	@PreAuthorize("isAuthenticated()")
+	@ResponseStatus(HttpStatus.OK)
+	public Answer update(@PathVariable Long answer_id, @Valid Answer answer, BindingResult result) {
+
+		RestVerifier.verifyModelResult(result);
+
+		answer.setId(answer_id);
+		return answerService.update(answer);
+	}
+
+	@RequestMapping(value = "/{answer_id}", method = RequestMethod.DELETE)
+//	@PreAuthorize("isAuthenticated()")
+	@ResponseStatus(HttpStatus.OK)
+	public void delete(@PathVariable Long answer_id) {
+		Answer answer = answerService.find(answer_id);
+		answerService.delete(answer);
+	}
 }
-

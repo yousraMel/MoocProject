@@ -10,14 +10,14 @@ import com.inti.formation.support.Response;
 import com.inti.formation.support.Result;
 
 
-public interface IQuizService {
+public interface IQuizService2 {
 	Quiz save(Quiz quiz);
 
-//	Page<Quiz> findAll(Pageable pageable);
-	List<Quiz> findAll();
+	Page<Quiz> findAll(Pageable pageable);
 
-//	Page<Quiz> findAllPublished(Pageable pageable);
-	List<Quiz> findAllPublished();
+
+	Page<Quiz> findAllPublished(Pageable pageable);
+	
 
 //	Page<Quiz> findQuizzesByUser(Pageable pageable);
 
@@ -27,8 +27,8 @@ public interface IQuizService {
 
 	void delete(Quiz quiz) ;
 
-//	Page<Quiz> search(String query, Pageable pageable);
-	List<Quiz> search(String query);
+	Page<Quiz> search(String query, Pageable pageable);
+	
 
 	Result checkAnswers(Quiz quiz, List<Response> answersBundle);
 

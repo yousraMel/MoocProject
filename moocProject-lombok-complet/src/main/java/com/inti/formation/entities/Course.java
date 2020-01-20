@@ -50,12 +50,12 @@ public class Course implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private CourseState state; 
 	private String objectives;
-//	private double courseNote;
+	private double courseNote;
 	private AccountType accountType;
 	private String language;
 	@OneToOne
 	@JoinColumn(unique=true,nullable=true)
-	private QuizCourse quiz;
+	private Quiz quiz;
 	@OneToMany(targetEntity = Chapter.class, fetch = FetchType.LAZY, mappedBy= "course",cascade = CascadeType.ALL)
 	private List<Chapter> chapters;
 	
