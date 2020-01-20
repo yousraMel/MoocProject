@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,10 +28,11 @@ import com.inti.formation.utils.RestVerifier;
 
 
 @RestController
-@RequestMapping(QuestionWebService.ROOT_MAPPING)
+@RequestMapping("/api/questions")
+@CrossOrigin(origins = "*")
 public class QuestionWebService {
 
-	public static final String ROOT_MAPPING = "/api/questions";
+
 
 	@Autowired
 	private QuestionService questionService;
@@ -42,7 +44,7 @@ public class QuestionWebService {
 	private AnswerService answerService;
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
-	@PreAuthorize("isAuthenticated()")
+//	@PreAuthorize("isAuthenticated()")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Question save(@Valid Question question, BindingResult result, @RequestParam Long quiz_id) {
 
@@ -55,7 +57,7 @@ public class QuestionWebService {
 	}
 
 	@RequestMapping(value = "/updateAll", method = RequestMethod.POST)
-	@PreAuthorize("isAuthenticated()")
+//	@PreAuthorize("isAuthenticated()")
 	@ResponseStatus(HttpStatus.OK)
 	public void updateAll(@RequestBody List<Question> questions) {
 		for (int i = 0; i < questions.size(); i++) {
@@ -67,7 +69,7 @@ public class QuestionWebService {
 	}
 
 	@RequestMapping(value = "/{question_id}", method = RequestMethod.GET)
-	@PreAuthorize("permitAll")
+//	@PreAuthorize("permitAll")
 	@ResponseStatus(HttpStatus.OK)
 	public Question find(@PathVariable Long question_id) {
 
@@ -75,7 +77,7 @@ public class QuestionWebService {
 	}
 
 	@RequestMapping(value = "/{question_id}", method = RequestMethod.POST)
-	@PreAuthorize("isAuthenticated()")
+//	@PreAuthorize("isAuthenticated()")
 	@ResponseStatus(HttpStatus.OK)
 	public Question update(@PathVariable Long question_id, @Valid Question question, BindingResult result) {
 
@@ -87,7 +89,7 @@ public class QuestionWebService {
 	}
 
 	@RequestMapping(value = "/{question_id}", method = RequestMethod.DELETE)
-	@PreAuthorize("isAuthenticated()")
+//	@PreAuthorize("isAuthenticated()")
 	@ResponseStatus(HttpStatus.OK)
 	public void delete(@PathVariable Long question_id) {
 		Question question = questionService.find(question_id);

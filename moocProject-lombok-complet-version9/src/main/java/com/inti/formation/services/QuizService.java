@@ -21,20 +21,23 @@ import com.inti.formation.support.Result;
 
 
 
-@Service("QuizService")
+@Service
 @Transactional
 public class QuizService implements IQuizService {
 
 	private static final Logger logger = LoggerFactory.getLogger(QuizService.class);
+	
+	
+	@Autowired
 	private QuizRepository quizRepository;
-
+@Autowired
 	private IQuestionService questionService;
 
-	@Autowired
-	public QuizService(QuizRepository quizRepository, IQuestionService questionService) {
-		this.quizRepository = quizRepository;
-		this.questionService = questionService;
-	}
+//	@Autowired
+//	public QuizService(QuizRepository quizRepository, IQuestionService questionService) {
+//		this.quizRepository = quizRepository;
+//		this.questionService = questionService;
+//	}
 
 	@Override
 	public Quiz save(Quiz quiz) {

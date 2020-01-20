@@ -30,11 +30,11 @@ import com.inti.formation.utils.RestVerifier;
 
 
 @RestController
-@RequestMapping(QuizWebService.ROOT_MAPPING)
-@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/apiQuiz")
+@CrossOrigin(origins = "*", methods= {RequestMethod.DELETE,RequestMethod.GET,RequestMethod.POST,RequestMethod.HEAD,RequestMethod.OPTIONS})
 public class QuizWebService {
 
-	public static final String ROOT_MAPPING = "/apiQuiz";
+	
 
 	private static final Logger logger = LoggerFactory.getLogger(QuizWebService.class);
 
@@ -75,7 +75,7 @@ public class QuizWebService {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 //	@PreAuthorize("isAuthenticated()")
 	@PreAuthorize("permitAll")
-//	@ResponseStatus(HttpStatus.CREATED)
+	@ResponseStatus(HttpStatus.CREATED)
 	public Quiz save(@RequestBody @Valid Quiz quiz, BindingResult result) {
 
 		logger.debug("The Quiz " + quiz.getName() + " is going to be created");
@@ -96,7 +96,7 @@ public class QuizWebService {
 	@RequestMapping(value = "/{quiz_id}", method = RequestMethod.POST)
 //	@PreAuthorize("isAuthenticated()")
 	@PreAuthorize("permitAll")
-	@ResponseStatus(HttpStatus.OK)
+//	@ResponseStatus(HttpStatus.OK)
 	public Quiz update(@PathVariable Long quiz_id, @Valid Quiz quiz, BindingResult result) {
 
 		RestVerifier.verifyModelResult(result);

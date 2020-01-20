@@ -14,20 +14,21 @@ import com.inti.formation.exceptions.ActionRefusedException;
 import com.inti.formation.exceptions.ResourceUnavailableException;
 import com.inti.formation.iservices.IAnswerService;
 import com.inti.formation.iservices.IQuestionService;
-import com.inti.formation.repositories.AnswerRepository;
+
+import com.inti.formation.repositories.IAnswerRepository;
 
 @Service("AnswerService")
 @Transactional
 public class AnswerService implements IAnswerService {
 
 	private static final Logger logger = LoggerFactory.getLogger(AnswerService.class);
-	private AnswerRepository answerRepository;
+	private IAnswerRepository answerRepository;
 
 	@Autowired
 	private IQuestionService questionService;
 
 	@Autowired
-	public AnswerService(AnswerRepository answerRepository) {
+	public AnswerService(IAnswerRepository answerRepository) {
 		this.answerRepository = answerRepository;
 	}
 
