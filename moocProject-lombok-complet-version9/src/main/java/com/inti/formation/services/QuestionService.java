@@ -36,6 +36,7 @@ public class QuestionService implements IQuestionService {
 	@Override
 	public Question save(Question question) {
 		int count = questionRepository.countByQuiz(question.getQuiz());
+		
 		question.setOrder(count + 1);
 
 		return questionRepository.save(question);
@@ -55,7 +56,7 @@ public class QuestionService implements IQuestionService {
 
 	@Override
 	public Question update(Question newQuestion) throws ResourceUnavailableException {
-		Question currentQuestion = find(newQuestion.getId());
+		Question currentQuestion = find(newQuestion.getIdQuastion());
 
 		mergeQuestions(currentQuestion, newQuestion);
 		return questionRepository.save(currentQuestion);

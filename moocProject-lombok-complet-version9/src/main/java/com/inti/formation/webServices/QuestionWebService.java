@@ -43,14 +43,14 @@ public class QuestionWebService {
 	@Autowired
 	private AnswerService answerService;
 
-	@RequestMapping(value = "", method = RequestMethod.POST)
+	@RequestMapping(value = "/save/{idQuiz}", method = RequestMethod.POST)
 //	@PreAuthorize("isAuthenticated()")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Question save(@Valid Question question, BindingResult result, @RequestParam Long quiz_id) {
+	public Question save(@Valid Question question, BindingResult result, @PathVariable Long idQuiz) {
 
 		RestVerifier.verifyModelResult(result);
 
-		Quiz quiz = quizService.find(quiz_id);
+		Quiz quiz = quizService.find(idQuiz);
 		question.setQuiz(quiz);
 
 		return questionService.save(question);
@@ -83,7 +83,7 @@ public class QuestionWebService {
 
 		RestVerifier.verifyModelResult(result);
 
-		question.setId(question_id);
+		question.setIdQuastion(question_id);
 		return questionService.update(question);
 
 	}

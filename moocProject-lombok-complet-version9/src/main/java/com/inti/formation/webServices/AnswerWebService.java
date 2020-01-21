@@ -24,10 +24,10 @@ import com.inti.formation.utils.RestVerifier;
 
 
 @RestController
-@RequestMapping(AnswerWebService.ROOT_MAPPING)
+@RequestMapping("/api/answers")
 public class AnswerWebService {
 
-	public static final String ROOT_MAPPING = "/api/answers";
+	
 
 	@Autowired
 	AnswerService answerService;

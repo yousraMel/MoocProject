@@ -31,7 +31,7 @@ import com.inti.formation.utils.RestVerifier;
 
 @RestController
 @RequestMapping("/apiQuiz")
-@CrossOrigin(origins = "*", methods= {RequestMethod.DELETE,RequestMethod.GET,RequestMethod.POST,RequestMethod.HEAD,RequestMethod.OPTIONS})
+@CrossOrigin(origins = "*")
 public class QuizWebService {
 
 	
@@ -105,7 +105,7 @@ public class QuizWebService {
 		return quizService.update(quiz);
 	}
 
-	@RequestMapping(value = "/{quiz_id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "delete/{quiz_id}", method = RequestMethod.DELETE)
 //	@PreAuthorize("isAuthenticated()")
 	@ResponseStatus(HttpStatus.OK)
 	public void delete(@PathVariable Long quiz_id) {

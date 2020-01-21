@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "quiz")
-@Data @NoArgsConstructor @AllArgsConstructor
+ @NoArgsConstructor @AllArgsConstructor
 public class Quiz   {
 	
 	@Id
@@ -48,5 +48,55 @@ public class Quiz   {
 	private Date createdDate;
 
 	private Boolean isPublished = false;
+
+	public Long getIdQuiz() {
+		return idQuiz;
+	}
+
+	public void setIdQuiz(Long idQuiz) {
+		this.idQuiz = idQuiz;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public List<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(List<Question> questions) {
+		this.questions = questions;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public Boolean getIsPublished() {
+		return isPublished;
+	}
+
+	public void setIsPublished(Boolean isPublished) {
+		this.isPublished = isPublished;
+	}
+	
+	
 
 }
