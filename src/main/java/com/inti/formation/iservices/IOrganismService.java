@@ -9,5 +9,5 @@ public interface IOrganismService {
 	public void deleteByIdOrganism(Long id);
 	public Organism getByIdOrganism(Long id);
 	public List<Organism> getAllOrganism();
-	public Organism findByOrganismState(String organismState);
+	public List<Organism> findByOrganismState(String organismState);
 }

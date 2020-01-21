@@ -36,7 +36,7 @@ public class OrganismService implements IOrganismService {
 	}
 
 	@Override
-	public Organism findByOrganismState(String organismState) {
+	public List<Organism> findByOrganismState(String organismState) {
 		return repo.findByOrganismState(organismState);
 	}
 

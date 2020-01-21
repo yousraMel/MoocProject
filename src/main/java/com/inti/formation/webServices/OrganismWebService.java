@@ -52,9 +52,15 @@ public class OrganismWebService {
 		return service.getAllOrganism();
 	}
 	
-	@RequestMapping(value="/validate",method=RequestMethod.GET)
-	public Organism validate(@PathVariable String organismState){
-		return service.findByOrganismState(organismState);
+	
+	@RequestMapping(value = "/getAllValideOrganism", method = RequestMethod.GET)
+		public List<Organism> findAllValide() {
+		return service.findByOrganismState("Validated");
+	}
+	
+	@RequestMapping(value = "/getAllNotValideOrganism", method = RequestMethod.GET)
+	public List<Organism> findAllNotValide() {
+		return service.findByOrganismState("NotValidatedYet");
 	}
 
 }
