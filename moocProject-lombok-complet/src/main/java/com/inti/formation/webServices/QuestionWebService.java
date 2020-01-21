@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,13 +25,10 @@ import com.inti.formation.services.QuestionService;
 import com.inti.formation.services.QuizService;
 import com.inti.formation.utils.RestVerifier;
 
-
-
 @RestController
-@RequestMapping(QuestionWebService.ROOT_MAPPING)
+@RequestMapping("/apiQuestion")
+@CrossOrigin(origins = "*")
 public class QuestionWebService {
-
-	public static final String ROOT_MAPPING = "/api/questions";
 
 	@Autowired
 	private QuestionService questionService;
@@ -41,21 +39,21 @@ public class QuestionWebService {
 	@Autowired
 	private AnswerService answerService;
 
-	@RequestMapping(value = "", method = RequestMethod.POST)
-	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+//	@PreAuthorize("isAuthenticated()")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Question save(@Valid Question question, BindingResult result, @RequestParam Long quiz_id) {
+	public Question save(@RequestBody @Valid Question question, @RequestParam Long idQuiz, BindingResult result) {
 
 		RestVerifier.verifyModelResult(result);
 
-		Quiz quiz = quizService.find(quiz_id);
+		Quiz quiz = quizService.find(idQuiz);
 		question.setQuiz(quiz);
 
 		return questionService.save(question);
 	}
 
 	@RequestMapping(value = "/updateAll", method = RequestMethod.POST)
-	@PreAuthorize("isAuthenticated()")
+//	@PreAuthorize("isAuthenticated()")
 	@ResponseStatus(HttpStatus.OK)
 	public void updateAll(@RequestBody List<Question> questions) {
 		for (int i = 0; i < questions.size(); i++) {
@@ -74,26 +72,34 @@ public class QuestionWebService {
 		return questionService.find(question_id);
 	}
 
-	@RequestMapping(value = "/{question_id}", method = RequestMethod.POST)
-	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/update/{question_id}", method = RequestMethod.POST)
+//	@PreAuthorize("isAuthenticated()")
 	@ResponseStatus(HttpStatus.OK)
 	public Question update(@PathVariable Long question_id, @Valid Question question, BindingResult result) {
 
 		RestVerifier.verifyModelResult(result);
 
-		question.setId(question_id);
+		question.setIdQuestion(question_id);
 		return questionService.update(question);
 
 	}
 
-	@RequestMapping(value = "/{question_id}", method = RequestMethod.DELETE)
-	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/delete/{question_id}", method = RequestMethod.DELETE)
+//	@PreAuthorize("isAuthenticated()")
 	@ResponseStatus(HttpStatus.OK)
 	public void delete(@PathVariable Long question_id) {
 		Question question = questionService.find(question_id);
 		questionService.delete(question);
 	}
 
+	@RequestMapping(value = "/findAll", method = RequestMethod.GET)
+	@PreAuthorize("permitAll")
+	@ResponseStatus(HttpStatus.OK)
+	public List<Question> findAll() {
+		return questionService.findAllQuizes();
+	}
+
+	
 	@RequestMapping(value = "/{question_id}/answers", method = RequestMethod.GET)
 	@PreAuthorize("permitAll")
 	@ResponseStatus(HttpStatus.OK)

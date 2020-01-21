@@ -55,7 +55,7 @@ public class QuestionService implements IQuestionService {
 
 	@Override
 	public Question update(Question newQuestion) throws ResourceUnavailableException {
-		Question currentQuestion = find(newQuestion.getId());
+		Question currentQuestion = find(newQuestion.getIdQuestion());
 
 		mergeQuestions(currentQuestion, newQuestion);
 		return questionRepository.save(currentQuestion);
@@ -85,7 +85,11 @@ public class QuestionService implements IQuestionService {
 			return false;
 		}
 
-		return question.getCorrectAnswer().getId().equals(answer_id);
+		return question.getCorrectAnswer().getIdAnswer().equals(answer_id);
+	}
+	@Override
+	public List<Question> findAllQuizes() {
+		return questionRepository.findAll();
 	}
 
 	@Override

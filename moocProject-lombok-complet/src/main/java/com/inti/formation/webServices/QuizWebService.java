@@ -7,8 +7,6 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 //import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -24,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.inti.formation.entities.Question;
 import com.inti.formation.entities.Quiz;
-import com.inti.formation.iservices.IQuizService;
 import com.inti.formation.services.QuestionService;
 import com.inti.formation.services.QuizService;
 import com.inti.formation.support.Response;
@@ -33,11 +30,9 @@ import com.inti.formation.utils.RestVerifier;
 
 
 @RestController
-@RequestMapping(QuizWebService.ROOT_MAPPING)
-@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/apiQuiz")
+@CrossOrigin(origins = "*")
 public class QuizWebService {
-
-	public static final String ROOT_MAPPING = "/apiQuiz";
 
 	private static final Logger logger = LoggerFactory.getLogger(QuizWebService.class);
 
@@ -108,7 +103,7 @@ public class QuizWebService {
 		return quizService.update(quiz);
 	}
 
-	@RequestMapping(value = "/{quiz_id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete/{quiz_id}", method = RequestMethod.DELETE)
 //	@PreAuthorize("isAuthenticated()")
 	@ResponseStatus(HttpStatus.OK)
 	public void delete(@PathVariable Long quiz_id) {

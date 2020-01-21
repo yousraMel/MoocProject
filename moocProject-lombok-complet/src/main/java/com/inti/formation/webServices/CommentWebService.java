@@ -3,6 +3,7 @@ package com.inti.formation.webServices;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +14,8 @@ import com.inti.formation.entities.Comment;
 import com.inti.formation.iservices.ICommentService;
 
 @RestController
-@RequestMapping("/commentApi")
+@RequestMapping("/apiComment")
+@CrossOrigin(origins = "*")
 public class CommentWebService {
 	
 	@Autowired

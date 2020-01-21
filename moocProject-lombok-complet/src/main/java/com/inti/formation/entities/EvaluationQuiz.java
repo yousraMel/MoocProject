@@ -20,9 +20,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "evaluation_quiz")
-//@AssociationOverrides({
-//		@AssociationOverride(name = "primaryKey.quiz", joinColumns = @JoinColumn(name = "quiz_id")),
-//		@AssociationOverride(name = "primaryKey.learner", joinColumns = @JoinColumn(name = "learner_id")) })
 public class EvaluationQuiz implements Serializable {
 
 	/**
@@ -40,26 +37,4 @@ public class EvaluationQuiz implements Serializable {
 	private Learner learner;
 	private double score;
 	
-
-//	@EmbeddedId
-//	private EvaluationQuizId primaryKey = new EvaluationQuizId();
-//	private double score;
-//
-//	@Transient
-//	public Learner getLearner() {
-//		return getPrimaryKey().getLearner();
-//	}
-//
-//	public void setLearner(Learner learner) {
-//		getPrimaryKey().setLearner(learner);
-//	}
-//
-//	@Transient
-//	public Quiz getQuiz() {
-//		return getPrimaryKey().getQuiz();
-//	}
-//
-//	public void setQuiz(Quiz quiz) {
-//		getPrimaryKey().setQuiz(quiz);
-//	}
 }

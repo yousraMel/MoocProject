@@ -107,7 +107,7 @@ public class QuizService2 implements IQuizService2 {
 			}
 
 			for (Response bundle : answersBundle) {
-				if (bundle.getQuestion().equals(question.getId())) {
+				if (bundle.getQuestion().equals(question.getIdQuestion())) {
 					isFound = true;
 					results.addAnswer(questionService.checkIsCorrectAnswer(question, bundle.getSelectedAnswer()));
 					break;

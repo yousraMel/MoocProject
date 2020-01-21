@@ -3,6 +3,7 @@ package com.inti.formation.webServices;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import com.inti.formation.entities.Organism;
 import com.inti.formation.iservices.IOrganismService;
 @RestController
 @RequestMapping("/apiOrganism")
+@CrossOrigin(origins = "*")
 public class OrganismWebService {
 	@Autowired
 	private IOrganismService service;
@@ -47,9 +49,12 @@ public class OrganismWebService {
 	
 	@RequestMapping(value="/getAllOrganism",method=RequestMethod.GET)
 	public List<Organism> findAll(){
-		
 		return service.getAllOrganism();
-		
+	}
+	
+	@RequestMapping(value="/validate",method=RequestMethod.GET)
+	public Organism validate(@PathVariable String organismState){
+		return service.findByOrganismState(organismState);
 	}
 
 }

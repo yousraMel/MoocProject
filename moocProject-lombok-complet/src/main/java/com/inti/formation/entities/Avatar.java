@@ -5,24 +5,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Badge {
-	
+@AllArgsConstructor
+@ToString
+public class Avatar {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idBadge;
-	private String title;
-	private String description;
-	@ManyToOne
+	private Long idAvatar;
+	@OneToOne
 	@JoinColumn(name = "learner_id")
 	private Learner learner;
 

@@ -1,15 +1,16 @@
 package com.inti.formation.entities;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
+//import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -18,26 +19,26 @@ import com.inti.formation.enumeration.TrainerState;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 
 @Data
+@EqualsAndHashCode(callSuper=false)
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Trainer implements Serializable{
+public class Trainer extends User {
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long idTrainer;
+//	@Id
+//	@GeneratedValue(strategy=GenerationType.IDENTITY)
+//	private Long idTrainer;
 	private String firstName;
 	private String lastName;
 	@DateTimeFormat(pattern ="yyyy-mm-dd")
 	private Date dateOfBirth;
-	private String email;
-	private String password;
 	private int phoneNumber;
 	@Embedded
 	private Address address;
@@ -49,6 +50,9 @@ public class Trainer implements Serializable{
 	private Gender gender;
 	@Enumerated(EnumType.STRING)
 	private TrainerState trainerState = TrainerState.notYetValidated;
+	@ManyToOne
+	@JoinColumn(name="committee_id")
+	private Committee committee;
 	
 
 	

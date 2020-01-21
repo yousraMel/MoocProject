@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 //import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,10 +25,9 @@ import com.inti.formation.utils.RestVerifier;
 
 
 @RestController
-@RequestMapping(AnswerWebService.ROOT_MAPPING)
+@RequestMapping("/apiAnswer")
+@CrossOrigin(origins = "*")
 public class AnswerWebService {
-
-	public static final String ROOT_MAPPING = "/api/answers";
 
 	@Autowired
 	AnswerService answerService;
@@ -35,14 +35,14 @@ public class AnswerWebService {
 	@Autowired
 	QuestionService questionService;
 
-	@RequestMapping(value = "", method = RequestMethod.POST)
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
 //	@PreAuthorize("isAuthenticated()")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Answer save(@Valid Answer answer, BindingResult result, @RequestParam long question_id) {
+	public Answer save(@RequestBody @Valid Answer answer, BindingResult result, @RequestParam long idQuestion) {
 
 		RestVerifier.verifyModelResult(result);
 
-		Question question = questionService.find(question_id);
+		Question question = questionService.find(idQuestion);
 		return questionService.addAnswerToQuestion(answer, question);
 	}
 
@@ -58,30 +58,30 @@ public class AnswerWebService {
 		}
 	}
 
-	@RequestMapping(value = "/{answer_id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/{answer_id}", method = RequestMethod.GET)
 //	@PreAuthorize("permitAll")
 	@ResponseStatus(HttpStatus.OK)
-	public Answer find(@PathVariable Long answer_id) {
+	public Answer find(@PathVariable Long idAnswer) {
 
-		return answerService.find(answer_id);
+		return answerService.find(idAnswer);
 	}
 
-	@RequestMapping(value = "/{answer_id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/update/{answer_id}", method = RequestMethod.POST)
 //	@PreAuthorize("isAuthenticated()")
 	@ResponseStatus(HttpStatus.OK)
-	public Answer update(@PathVariable Long answer_id, @Valid Answer answer, BindingResult result) {
+	public Answer update(@PathVariable Long idAnswer,@RequestBody @Valid Answer answer, BindingResult result) {
 
 		RestVerifier.verifyModelResult(result);
 
-		answer.setId(answer_id);
+		answer.setIdAnswer(idAnswer);
 		return answerService.update(answer);
 	}
 
-	@RequestMapping(value = "/{answer_id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete/{answer_id}", method = RequestMethod.DELETE)
 //	@PreAuthorize("isAuthenticated()")
 	@ResponseStatus(HttpStatus.OK)
-	public void delete(@PathVariable Long answer_id) {
-		Answer answer = answerService.find(answer_id);
+	public void delete(@PathVariable Long idAnswer) {
+		Answer answer = answerService.find(idAnswer);
 		answerService.delete(answer);
 	}
 }

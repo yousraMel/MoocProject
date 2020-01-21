@@ -54,7 +54,7 @@ public class AnswerService implements IAnswerService {
 
 	@Override
 	public Answer update(Answer newAnswer) throws ResourceUnavailableException{
-		Answer currentAnswer = find(newAnswer.getId());
+		Answer currentAnswer = find(newAnswer.getIdAnswer());
 
 		mergeAnswers(currentAnswer, newAnswer);
 		return answerRepository.save(currentAnswer);
@@ -63,7 +63,7 @@ public class AnswerService implements IAnswerService {
 	@Override
 	public void delete(Answer answer) throws ResourceUnavailableException {
 
-		if (questionService.checkIsCorrectAnswer(answer.getQuestion(), answer.getId())) {
+		if (questionService.checkIsCorrectAnswer(answer.getQuestion(), answer.getIdAnswer())) {
 			throw new ActionRefusedException("The correct answer can't be deleted");
 		}
 

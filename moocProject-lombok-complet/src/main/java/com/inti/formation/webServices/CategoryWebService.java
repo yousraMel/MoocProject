@@ -14,11 +14,11 @@ import com.inti.formation.entities.Category;
 import com.inti.formation.iservices.ICategoryService;
 
 @RestController
-@RequestMapping(QuizWebService.ROOT_MAPPING)
-@CrossOrigin("*")
+@RequestMapping( "/apiCategory")
+@CrossOrigin(origins = "*")
 public class CategoryWebService {
 	
-	public static final String ROOT_MAPPING = "/apiCategory";
+//	public static final String ROOT_MAPPING = "/apiCategory";
 
 	@Autowired
 	private ICategoryService service;

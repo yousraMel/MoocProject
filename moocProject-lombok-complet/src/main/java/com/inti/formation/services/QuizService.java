@@ -21,8 +21,6 @@ import com.inti.formation.repositories.QuizRepository;
 import com.inti.formation.support.Response;
 import com.inti.formation.support.Result;
 
-
-
 @Service("QuizService")
 @Transactional
 public class QuizService implements IQuizService {
@@ -105,7 +103,7 @@ public class QuizService implements IQuizService {
 			}
 
 			for (Response bundle : answersBundle) {
-				if (bundle.getQuestion().equals(question.getId())) {
+				if (bundle.getQuestion().equals(question.getIdQuestion())) {
 					isFound = true;
 					results.addAnswer(questionService.checkIsCorrectAnswer(question, bundle.getSelectedAnswer()));
 					break;

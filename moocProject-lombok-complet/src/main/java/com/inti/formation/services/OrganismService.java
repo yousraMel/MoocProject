@@ -16,27 +16,28 @@ public class OrganismService implements IOrganismService {
 
 	@Override
 	public Organism saveOrUpdateOrganism(Organism u) {
-		// TODO Auto-generated method stub
 		return repo.save(u);
 	}
 
 	@Override
 	public void deleteByIdOrganism(Long id) {
-		// TODO Auto-generated method stub
 		repo.deleteById(id);
-		;
+
 	}
 
 	@Override
 	public Organism getByIdOrganism(Long id) {
-		// TODO Auto-generated method stub
 		return repo.findById(id).get();
 	}
 
 	@Override
 	public List<Organism> getAllOrganism() {
-		// TODO Auto-generated method stub
 		return repo.findAll();
+	}
+
+	@Override
+	public Organism findByOrganismState(String organismState) {
+		return repo.findByOrganismState(organismState);
 	}
 
 }

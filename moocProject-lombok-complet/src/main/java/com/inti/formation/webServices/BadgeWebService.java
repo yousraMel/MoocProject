@@ -3,6 +3,7 @@ package com.inti.formation.webServices;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +14,8 @@ import com.inti.formation.entities.Badge;
 import com.inti.formation.services.BadgeService;
 
 @RestController
-@RequestMapping("/badge")
+@RequestMapping("/apiBadge")
+@CrossOrigin(origins = "*")
 public class BadgeWebService {
 	
 	@Autowired

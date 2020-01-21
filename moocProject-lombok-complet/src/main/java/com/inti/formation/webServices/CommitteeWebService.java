@@ -3,6 +3,7 @@ package com.inti.formation.webServices;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import com.inti.formation.iservices.ICommitteeService;
 
 @RestController
 @RequestMapping("/committeeApi")
+@CrossOrigin(origins = "*")
 public class CommitteeWebService {
 	
 	@Autowired

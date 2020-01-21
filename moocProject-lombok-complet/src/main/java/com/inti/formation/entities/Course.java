@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -58,5 +59,11 @@ public class Course implements Serializable {
 	private Quiz quiz;
 	@OneToMany(targetEntity = Chapter.class, fetch = FetchType.LAZY, mappedBy= "course",cascade = CascadeType.ALL)
 	private List<Chapter> chapters;
+	@ManyToOne
+	@JoinColumn(name="category_id")
+	private Category category;
+	
+	
+	
 	
 }

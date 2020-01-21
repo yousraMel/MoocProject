@@ -14,6 +14,8 @@ public interface IQuestionService {
 	Question find(Long id);
 
 	List<Question> findQuestionsByQuiz(Quiz quiz);
+	
+	List<Question> findAllQuizes();
 
 	List<Question> findValidQuestionsByQuiz(Quiz quiz);
 

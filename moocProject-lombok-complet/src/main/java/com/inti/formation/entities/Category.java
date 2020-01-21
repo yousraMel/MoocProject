@@ -1,11 +1,15 @@
 package com.inti.formation.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,5 +29,11 @@ public class Category implements Serializable{
 	private String categoryName;
 	private String categoryDescription;
 	private String icone;
+	@OneToMany(mappedBy ="category")
+	private List<Course> courses;
+	@ManyToOne
+	@JoinColumn(name="committee_id")
+	private Committee committee;
+	
 
 }
