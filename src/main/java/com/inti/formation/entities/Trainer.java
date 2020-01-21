@@ -1,6 +1,7 @@
 package com.inti.formation.entities;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -42,8 +43,8 @@ public class Trainer extends User {
 //	private String email;
 //	private String password;
 	private int phoneNumber;
-	@Embedded
-	private Address address;
+//	@Embedded
+//	private Address address;
 	private String cv;
 	private int nbrOfCourses;
 	private String specialiy;
@@ -55,6 +56,21 @@ public class Trainer extends User {
 	@ManyToOne
 	@JoinColumn(name="committee_id")
 	private Committee committee;
+	
+	
+	public Trainer(Long id, String email, String password, String passwordConfirm, Set<Role> roles, String firstName,
+			String lastName, Date dateOfBirth, int phoneNumber, String specialiy, String experience, Gender gender,
+			TrainerState trainerState) {
+		super(id, email, password, passwordConfirm, roles);
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.phoneNumber = phoneNumber;
+		this.specialiy = specialiy;
+		this.experience = experience;
+		this.gender = gender;
+		this.trainerState = trainerState;
+	}
 	
 
 	
