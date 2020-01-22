@@ -20,10 +20,10 @@ public class Progress {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idProgress;
 	@ManyToOne
-	@JoinColumn(name = "learner_id")
+	@JoinColumn(name = "idLearner")
 	private Learner learner;
 	@ManyToOne
-	@JoinColumn(name = "course")
+	@JoinColumn(name = "idCourse")
 	private Course course;
 	private int state;
 

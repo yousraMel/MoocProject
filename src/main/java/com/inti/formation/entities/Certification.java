@@ -34,10 +34,10 @@ public class Certification implements Serializable {
 	@JsonFormat(shape =JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
 	private Date creationDate;
 	@ManyToOne
-	@JoinColumn(name = "learner_id")
+	@JoinColumn(name = "idLearner")
 	private Learner learner;
 	@OneToOne
-	@JoinColumn(name = "course_id")
+	@JoinColumn(name = "idCourse")
 	private Course course;
 
 

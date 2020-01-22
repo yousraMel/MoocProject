@@ -66,7 +66,12 @@ public class UserWebService {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public User login(@PathVariable String email, @PathVariable String password){
-		return service.login(email, password);
+		User u = service.login(email, password);
+		Long id = u.getId();
+		Set<Role> role = u.getRoles();
+		System.out.println(id);
+		System.out.println(role);
+		return u;
 	}
 	
 	
