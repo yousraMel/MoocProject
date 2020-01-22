@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.inti.formation.entities.Organism;
 import com.inti.formation.entities.Trainer;
 import com.inti.formation.iservices.ITrainerService;
 import com.inti.formation.repositories.ITrainerRepository;
@@ -37,6 +38,11 @@ public class TrainerService implements ITrainerService {
 	public List<Trainer> getAllTrainer() {
 		// TODO Auto-generated method stub
 		return repo.findAll();
+	}
+
+	@Override
+	public List<Trainer> findByTrainerState(String trainerState) {
+		return repo.findByTrainerState(trainerState);
 	}
 
 }

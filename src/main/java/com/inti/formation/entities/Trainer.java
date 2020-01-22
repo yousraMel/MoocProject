@@ -43,16 +43,17 @@ public class Trainer extends User {
 //	private String email;
 //	private String password;
 	private int phoneNumber;
-//	@Embedded
-//	private Address address;
+	@Embedded
+	private Address address;
 	private String cv;
 	private int nbrOfCourses;
 	private String specialiy;
 	private String experience;
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
-	@Enumerated(EnumType.STRING)
-	private TrainerState trainerState = TrainerState.notYetValidated;
+//	@Enumerated(EnumType.STRING)
+//	private String trainerState = "notYetValidated";
+	private String trainerState  = "notYetValidated";
 	@ManyToOne
 	@JoinColumn(name="committee_id")
 	private Committee committee;
@@ -60,7 +61,7 @@ public class Trainer extends User {
 	
 	public Trainer(Long id, String email, String password, String passwordConfirm, Set<Role> roles, String firstName,
 			String lastName, Date dateOfBirth, int phoneNumber, String specialiy, String experience, Gender gender,
-			TrainerState trainerState) {
+			String trainerState) {
 		super(id, email, password, passwordConfirm, roles);
 		this.firstName = firstName;
 		this.lastName = lastName;

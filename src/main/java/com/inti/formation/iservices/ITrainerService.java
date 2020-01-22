@@ -10,5 +10,6 @@ public interface ITrainerService {
     public void deleteTrainer (Long idTrainer);
     public Trainer getByIdTrainer(Long idTrainer);
     public List<Trainer> getAllTrainer();
+    public List<Trainer> findByTrainerState(String trainerState);
 
 }

@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.inti.formation.entities.Organism;
 import com.inti.formation.entities.Trainer;
+import com.inti.formation.enumeration.TrainerState;
 import com.inti.formation.iservices.ITrainerService;
 
 @RestController
@@ -45,4 +47,35 @@ public class TrainerWebService {
 	public List<Trainer> findAllTrainer () {
 		return service.getAllTrainer();
 	}
+	
+//	@RequestMapping(value="/validate",method=RequestMethod.GET)
+//	public Trainer validate(@PathVariable String trainerState){
+//		return service.findByTrainerState(trainerState);
+//	}
+	
+
+	@RequestMapping(value = "/getAllValidatedTrainer", method = RequestMethod.GET)
+		public List<Trainer> findAllValide() {
+		return service.findByTrainerState("alreadyValidated");
+	}
+	
+	@RequestMapping(value = "/getAllNotValidatedTrainer", method = RequestMethod.GET)
+	public List<Trainer> findAllNotValide() {
+		return service.findByTrainerState("notYetValidated");
+	}
+	
+	@RequestMapping(value="/trainerState", method=RequestMethod.GET)
+	public Trainer validateTrainer(@PathVariable("id") Long idTrainer, @RequestBody Trainer t) {
+//		Trainer trainer = new Trainer();
+//		trainer = service.getByIdTrainer(idTrainer);
+//		System.out.println(trainer);
+//		trainer.setTrainerState("alreadyValidated");
+//		System.out.println(trainer);
+//		t.setFirstName("Mouhja");
+		return service.saveOrUpdateTrainer(t);
+	}
+	
+
+	
+	
 }
