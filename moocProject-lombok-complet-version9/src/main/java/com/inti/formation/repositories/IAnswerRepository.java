@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import com.inti.formation.entities.Answer;
 import com.inti.formation.entities.Question;
 
-@Repository("AnswerRepository")
-public interface AnswerRepository extends JpaRepository<Answer, Long> {
+
+public interface IAnswerRepository extends JpaRepository<Answer, Long> {
 
 	int countByQuestion(Question question);
 
