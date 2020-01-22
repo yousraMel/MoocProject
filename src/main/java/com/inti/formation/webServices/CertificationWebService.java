@@ -21,8 +21,9 @@ public class CertificationWebService {
 	@Autowired
 	private ICertificationService service;
 	
-	@RequestMapping(value = "/save/{idLearner}", method = RequestMethod.POST)
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public Certification saveOrUpdate(@RequestBody Certification c) {
+		
 		return service.saveOrUpdateCertification(c);
 	}
 

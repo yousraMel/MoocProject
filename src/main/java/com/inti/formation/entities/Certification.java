@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
@@ -31,6 +33,8 @@ public class Certification implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idCertification;
 	private String title;
+
+	@CreationTimestamp
 	@JsonFormat(shape =JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
 	private Date creationDate;
 	@ManyToOne
