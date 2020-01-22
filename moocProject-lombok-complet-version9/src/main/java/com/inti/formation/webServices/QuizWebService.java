@@ -129,12 +129,13 @@ public class QuizWebService {
 
 	}
 
-	@RequestMapping(value = "/{quiz_id}/publish", method = RequestMethod.POST)
+	@RequestMapping(value = "/publish/{quiz_id}", method = RequestMethod.POST)
 //	@PreAuthorize("isAuthenticated()")
 	@PreAuthorize("permitAll")
 	@ResponseStatus(HttpStatus.OK)
 	public void publishQuiz(@PathVariable long quiz_id) {
 		Quiz quiz = quizService.find(quiz_id);
+		
 		quizService.publishQuiz(quiz);
 	}
 

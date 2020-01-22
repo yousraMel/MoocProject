@@ -14,5 +14,6 @@ public interface IChapterService {
 	public Chapter getByIdChapter(Long idChapter);
 	public List<Chapter> gatAllChapter();
 	public void mergeNewChapterFiles(Long idChapter, List<ChapterFile> chapters);
+	public List<Chapter> getChaptersByCourseIdCourse(Long id);
 	
 }

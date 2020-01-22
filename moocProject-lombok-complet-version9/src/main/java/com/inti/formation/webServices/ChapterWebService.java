@@ -29,7 +29,7 @@ public class ChapterWebService {
 	private ICourseService courseService;
 
 	@RequestMapping(value = "/save/{idCourse}", method = RequestMethod.POST)
-	public Chapter save(@Valid Chapter chapter, BindingResult result, @PathVariable Long idCourse) {
+	public Chapter save(@RequestBody Chapter chapter, BindingResult result, @PathVariable Long idCourse) {
 		Course course = courseService.getByIdCourse(idCourse);
 		chapter.setCourse(course);
 		return chapterService.saveOrUpdateChapter(chapter);
@@ -55,5 +55,10 @@ public class ChapterWebService {
 	public List<Chapter> findAll() {
 
 		return chapterService.gatAllChapter();
+	}
+	@RequestMapping(value = "/getChapterByCourse/{idCourse}", method = RequestMethod.GET)
+	public List<Chapter> getChapterByCourse(@PathVariable Long idCourse) {
+
+		return chapterService.getChaptersByCourseIdCourse(idCourse);
 	}
 }

@@ -51,6 +51,12 @@ public class ChapterService implements IChapterService {
 	        chapter.setChapterFiles(imageList);
 	        saveOrUpdateChapter(chapter);
 	    }
+
+	@Override
+	public List<Chapter> getChaptersByCourseIdCourse(Long id) {
+		
+		return repo.getChaptersByCourseIdCourse(id);
+	}
 		
 	}
 

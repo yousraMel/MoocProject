@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.inti.formation.enumeration.AccountType;
 import com.inti.formation.enumeration.CourseState;
 import com.inti.formation.enumeration.Level;
@@ -55,10 +56,13 @@ public class Course implements Serializable {
 	private String language;
 	@OneToOne
 	@JoinColumn(unique=true,nullable=true)
+	@JsonIgnore
 	private Quiz quiz;
-	@OneToMany(targetEntity = Chapter.class, fetch = FetchType.LAZY, mappedBy= "course",cascade = CascadeType.ALL)
+	@OneToMany(targetEntity = Chapter.class, fetch = FetchType.LAZY, mappedBy= "course")
+	@JsonIgnore
 	private List<Chapter> chapters;
 	@OneToMany(mappedBy="course")
+	@JsonIgnore
 	private List<CourseFile> courseFiles;
 	public Course() {
 		super();

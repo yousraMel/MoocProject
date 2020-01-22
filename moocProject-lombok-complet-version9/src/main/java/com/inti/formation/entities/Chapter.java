@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,11 +33,14 @@ public class Chapter implements Serializable {
 	private String description;
 	@OneToOne
 	@JoinColumn(unique=true,nullable=true)
+	@JsonIgnore
 	private Quiz quiz;
 	@ManyToOne
 	@JoinColumn(name="course_id")
+	@JsonIgnore
 	private Course course;
 	@OneToMany(mappedBy="chapter")
+	@JsonIgnore
 	private List<ChapterFile> chapterFiles;
 	public Chapter() {
 		super();

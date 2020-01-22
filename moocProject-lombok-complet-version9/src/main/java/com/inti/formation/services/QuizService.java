@@ -123,14 +123,15 @@ public class QuizService implements IQuizService {
 
 	@Override
 	public void publishQuiz(Quiz quiz) {
-		int count = questionService.countValidQuestionsInQuiz(quiz);
-
-		if (count > 0) {
-			quiz.setIsPublished(true);
-			quizRepository.save(quiz);
-		} else {
-			throw new ActionRefusedException("The quiz doesn't have any valid questions");
-		}
+//		int count = questionService.countValidQuestionsInQuiz(quiz);
+		quiz.setIsPublished(true);
+		quizRepository.save(quiz);
+//		if (count > 0) {
+////			quiz.setIsPublished(true);
+////			quizRepository.save(quiz);
+//		} else {
+//			throw new ActionRefusedException("The quiz doesn't have any valid questions");
+//		}
 	}
 
 }

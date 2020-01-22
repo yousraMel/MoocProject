@@ -37,8 +37,8 @@ private Long idQuastion;
 	@Column(name = "q_order")
 	private Integer order;
 
-	//@JsonIgnore
-	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
+	@OneToMany(mappedBy = "question")
 	private List<Answer> answers;
 
 	@JsonIgnore
