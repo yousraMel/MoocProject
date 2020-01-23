@@ -16,6 +16,8 @@ import com.inti.formation.iservices.IOrganismService;
 @RequestMapping("/apiOrganism")
 @CrossOrigin(origins = "*")
 public class OrganismWebService {
+	
+	
 	@Autowired
 	private IOrganismService service;
 

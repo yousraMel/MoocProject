@@ -17,6 +17,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.inti.formation.enumeration.AccountType;
 
 import lombok.AllArgsConstructor;
@@ -54,12 +55,20 @@ public class Learner extends User{
 	@OneToOne
 	@JoinColumn(name= "choice_id")
 	private Answer choice;
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "learner")
 	private List<Comment> comments;
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "learner")
 	private List<Badge> badges;
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "learner")
 	private List<Certification> certifications;
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "learner")
 	private List<Avatar> avatars;
 

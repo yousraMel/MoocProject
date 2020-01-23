@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -42,6 +43,7 @@ public class Certification implements Serializable {
 	private Learner learner;
 	@OneToOne
 	@JoinColumn(name = "idCourse")
+	@JsonIgnore
 	private Course course;
 
 

@@ -1,4 +1,4 @@
-package com.inti.formation.exceptions;
+package com.inti.formation.exeptions;
 
 public class ModelVerificationException extends QuizZzException {
 

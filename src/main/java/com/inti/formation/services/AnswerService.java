@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.inti.formation.entities.Answer;
 import com.inti.formation.entities.Question;
-import com.inti.formation.exceptions.ActionRefusedException;
-import com.inti.formation.exceptions.ResourceUnavailableException;
+import com.inti.formation.exeptions.ActionRefusedException;
+import com.inti.formation.exeptions.ResourceUnavailableException;
 import com.inti.formation.iservices.IAnswerService;
 import com.inti.formation.iservices.IQuestionService;
 import com.inti.formation.repositories.AnswerRepository;
