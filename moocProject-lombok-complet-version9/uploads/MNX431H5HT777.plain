@@ -1,0 +1,115 @@
+document.write("hello world")
+
+*************************code summ array**************javascript
+function calculer(arra){
+ var count = 0;
+   for(var i=0; i<arra.length; i++) 
+   { 
+      count += array[i]; 
+   }
+
+return count;
+
+}
+
+***********************calculat sum discount*********javascript
+
+function calculer(arra,discount){
+var max=0;
+max=Math.max.apply(Math,arra);
+ var counter = 0;
+   for(var i=0; i<arra.length; i++) 
+   { 
+if(arra[i]==max){
+counter += (arra[i]-(arra[i]*discount/100)); 
+}
+else{
+      counter += arra[i]; 
+}
+   }
+var sum=Math.floor(counter);
+return sum;
+}
+********************************factorial n*******javascript
+function sFact(num)
+{
+var rval=1;
+if(num==0){
+return 1;
+}
+else{
+var rval=1;
+    
+    for (var i = 2; i <= num; i++)
+        rval = rval * i;
+    
+}
+return rval;
+}
+**************************
+  if (num < 0) 
+        return -1; window.alert("ddddd")
+  else if (num == 0) 
+      return 1;
+  else {
+      return (num * factorialize(num - 1));
+  }
+}
+factorialize(5);
+*************************closest********************java
+static int closest(int[] array) {
+	    int num = array[0];
+	    int absNum = Math.abs(num);
+	    for(int i = 1; i < array.length; ++i) {
+	        int newAbs = Math.abs(array[i]);
+	        if(newAbs < absNum) {
+	            absNum = newAbs;
+	            num = array[i];
+	        }
+	    }
+	    return num;
+	}
+
+*************************max et min********************java
+    public static void maxmin(int [] arr) {
+
+        int min = Arrays.stream(arr).min().getAsInt();
+        int max = Arrays.stream(arr).max().getAsInt();
+        System.out.println("Min = " + min);
+        System.out.println("Max = " + max);
+   }
+    
+    
+    public static void average(int [] arr) {
+           double total = 0;
+
+           for(int i=0; i<arr.length; i++){
+           	total = total + arr[i];
+           }
+           double average = total / arr.length;
+           System.out.format("The average is: %.3f", average);
+    	
+    	
+    	
+    }
+*******************************************************************
+---------- Query 1 ------------
+SELECT DISTINCT city
+FROM customer
+ORDER BY city
+---------- Query 2 ------------
+SELECT customer_id
+FROM customer
+WHERE customer_id NOT IN (
+SELECT customer_id
+FROM purchase_order )
+---------- Query 3 ------------
+SELECT city, count(*) AS customer_count
+FROM customer
+GROUP BY city
+HAVING count(*) > 1
+---------- Query 4 ------------
+SELECT lastname, firstname
+FROM customer
+WHERE lastname LIKE 'W%'
+ORDER BY lastname, firstname
