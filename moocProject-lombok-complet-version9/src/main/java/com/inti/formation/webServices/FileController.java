@@ -26,15 +26,15 @@ public class FileController {
 //        FILE_SERVICE = file_service;
 //    }
 
-    @PostMapping("/uploadFile/{id}/")
+    @PostMapping("/uploadFile/{id}")
     public ResponseHandler uploadFile(@PathVariable("id") Long id, @RequestParam("file") MultipartFile file) {
         return new ResponseHandler(HttpStatus.OK, FILE_SERVICE.storeImage(file, id));
     }
 
-    @PostMapping("/uploadFiles/{id}")
-    public ResponseHandler uploadMultiplyFiles(@PathVariable("id") Long id, @RequestParam("file") MultipartFile[] files) {
-        return new ResponseHandler(HttpStatus.OK, FILE_SERVICE.storeImages(files, id));
-    }
+//    @PostMapping("/uploadFiles/{id}")
+//    public ResponseHandler uploadMultiplyFiles(@PathVariable("id") Long id, @RequestParam("file") MultipartFile[] files) {
+//        return new ResponseHandler(HttpStatus.OK, FILE_SERVICE.storeImages(files, id));
+//    }
 
     @DeleteMapping("/{id}/deleteFile")
     public ResponseHandler RemoveFile() {

@@ -36,7 +36,7 @@ public class Course implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idCourse;
 	private String title;
 	@JsonFormat(pattern = "yyyy-MM-dd")
@@ -58,19 +58,21 @@ public class Course implements Serializable {
 	@JoinColumn(unique=true,nullable=true)
 	@JsonIgnore
 	private Quiz quiz;
-	@OneToMany(targetEntity = Chapter.class, fetch = FetchType.LAZY, mappedBy= "course")
+	@OneToMany
+//	(targetEntity = Chapter.class, fetch = FetchType.LAZY, mappedBy= "course")
 	@JsonIgnore
 	private List<Chapter> chapters;
-	@OneToMany(mappedBy="course")
+	@OneToOne
+	
 	@JsonIgnore
-	private List<CourseFile> courseFiles;
+	private CourseFile courseFiles;
 	public Course() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Course(Long idCourse, String title, Date createDate, Date updateDate, Level level, String duration,
 			String keyWords, String description, CourseState state, String objectives, double courseNote,
-			AccountType accountType, String language, Quiz quiz, List<Chapter> chapters, List<CourseFile> courseFiles) {
+			AccountType accountType, String language, Quiz quiz, List<Chapter> chapters, CourseFile courseFiles) {
 		super();
 		this.idCourse = idCourse;
 		this.title = title;
@@ -187,10 +189,10 @@ public class Course implements Serializable {
 	public void setChapters(List<Chapter> chapters) {
 		this.chapters = chapters;
 	}
-	public List<CourseFile> getCourseFiles() {
+	public CourseFile getCourseFiles() {
 		return courseFiles;
 	}
-	public void setCourseFiles(List<CourseFile> courseFiles) {
+	public void setCourseFiles(CourseFile courseFiles) {
 		this.courseFiles = courseFiles;
 	}
 	public static long getSerialversionuid() {
