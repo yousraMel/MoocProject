@@ -1,0 +1,28 @@
+<app-app-header></app-app-header>
+
+
+<div class="container">
+    <p></p>
+    <button class="btn btn-danger" (click)="onNewQuestion(idQuiz)">New Question</button>
+    <p></p>
+    <table class="table table-striped">
+  
+      <tr>
+        <th>ID</th>
+        <th>Text</th>
+        <th>Action</th>
+      </tr>
+    <tr *ngFor="let question of questions; let i=index">
+  
+        <td>{{question.idQuestion}}</td>
+        <td>{{question.text}}</td>
+        <td>{{question.order}}</td>
+        <td><input (click)="onDeleteQuestion(question.idQuestion)" type="submit" value="Delete" class='btn btn-secondary' /><td></td>
+        <td><input (click)="onCompleteQuestion(question.idQuestion)" type="submit" value="Add Answer" class='btn btn-warning' /><td></td>
+        <td><input (click)="onAnswersByQuestion(question.idQuestion)" type="submit" value="Answers" class='btn btn-warning' /><td></td>
+      </tr>
+  
+    </table>
+    
+  
+  </div>

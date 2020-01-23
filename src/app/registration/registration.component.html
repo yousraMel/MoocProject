@@ -1,0 +1,48 @@
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-5 ">
+            <div class="area">
+                
+                <div class="fieldsetLog bg-light">
+                    <form [formGroup]="authform" (ngSubmit)="onRegistartion()">
+
+                        <div class="heading">
+                            <h4 class="form-heading">Sign Up</h4>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="CardID">Email</label>
+                            <div class="controls">
+                                <input type="text" class="form-control" formControlName="email"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="password">Password</label>
+                            <div class="controls">
+                                <input class="form-control" type="password" formControlName="password" required/>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="passwordConfirm">Confirm password</label>
+                            <div class="controls">
+                                <input class="form-control" type="password" formControlName="passwordConfirm" required/>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group mt-3">
+                            <div class="controls">
+                            <button class="btn btn-warning btn-block" type="submit">Sign Up</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <span>Already a memeber ! </span>
+                <a routerLink="../../login" class="btn btn-dark btn-block" role="button" ><span class="text-center">Sign In</span>  </a>
+            </div>
+        </div>
+    </div>
+ </div>
+

@@ -1,0 +1,17 @@
+<app-app-header></app-app-header>
+<div class="row">
+    <div class="col-md-9">
+    <div class="card">
+    
+      <div class="card-header">New Question</div>
+      <div class="card-body">
+    
+    <form #f="ngForm" (ngSubmit)="onSaveQuestion(f.value)">
+    
+      <div class="form-group">
+
+    <label class="control-label">Question Text:</label>
+    <input class="form-control" type="text" name="text" [(ngModel)]="text" required/>
+      </div>
+    
+    <button class="btn btn-block btn-warning" type="submit" [disabled]="!f.valid">save</button>

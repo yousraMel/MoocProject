@@ -1,0 +1,27 @@
+<app-app-header></app-app-header>
+
+<div class="container">
+    <p></p>
+    <button class="btn btn-danger" (click)="onNewQuiz()">New Quiz</button>
+    <p></p>
+    <table class="table table-striped">
+  
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    <tr *ngFor="let quiz of quizes">
+  
+        <td>{{quiz.idQuiz}}</td>
+        <td>{{quiz.name}}</td>
+        <td>{{quiz.description}}</td>
+        <td><input (click)="onDeleteQuiz(quiz.idQuiz)" type="submit" value="Delete" class='btn btn-secondary' /><td></td>
+        <td><input (click)="onQuestionsByQuiz(quiz.idQuiz)" type="submit" value="Questions" class='btn btn-warning' /><td></td>
+        <td><input (click)="onCompleteQuiz(quiz.idQuiz)" type="submit" value="Add Questions" class='btn btn-warning' /><td></td>
+      </tr>
+  
+    </table>
+    
+  
+  </div>

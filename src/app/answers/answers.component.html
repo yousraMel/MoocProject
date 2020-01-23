@@ -1,0 +1,25 @@
+<p>answers works!</p>
+
+<div class="container">
+    <p></p>
+    <button class="btn btn-danger" (click)="onNewAnswer(idQuestion)">New Answer</button>
+    <p></p>
+    <table class="table table-striped">
+  
+      <tr>
+        <th>ID</th>
+        <th>Text</th>
+        <th>Action</th>
+      </tr>
+    <tr *ngFor="let answer of answers; let i=index">
+  
+        <td>{{answer.idAnswer}}</td>
+        <td>{{answer.text}}</td>
+        <td>{{answer.order}}</td>
+        <td><input (click)="onDeleteAnswer(answer.idAnswer, index)" type="submit" value="Delete" class='btn btn-secondary' /><td></td>
+      </tr>
+  
+    </table>
+    
+  
+  </div>

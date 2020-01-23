@@ -1,0 +1,34 @@
+<app-app-header></app-app-header>
+<div class="row">
+    <div class="col-md-9">
+    <div class="card">
+    
+      <div class="card-header">New Quiz</div>
+      <div class="card-body">
+    
+    <form #f="ngForm" (ngSubmit)="onSaveQuiz(f.value)">
+    
+      <div class="form-group">
+    
+    <label class="control-label">Quiz Name:</label>
+    <input class="form-control" type="text" name="name" [(ngModel)]="name" required/>
+
+    <label class="control-label">Quiz Description:</label>
+    <input class="form-control" type="text" name="description" [(ngModel)]="description" required/>
+    
+    
+      </div>
+    
+    <button class="btn btn-block btn-warning" type="submit" [disabled]="!f.valid">save</button>
+    
+    
+    
+    </form>
+    
+    
+    
+      </div>
+    </div>
+    
+      </div>
+    </div>
