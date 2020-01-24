@@ -2,6 +2,7 @@ package com.inti.formation.services;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import com.inti.formation.iservices.ICommentService;
 import com.inti.formation.repositories.ICommentRepository;
 
 @Service
+
 public class CommentService implements ICommentService {
 	
 	@Autowired

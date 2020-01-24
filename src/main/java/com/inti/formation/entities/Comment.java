@@ -15,6 +15,7 @@ import javax.persistence.OneToOne;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,9 +41,11 @@ public class Comment implements Serializable{
 	@CreationTimestamp
 	@JsonFormat(shape =JsonFormat.Shape.STRING, pattern = "KK:mm")
 	private Date creationTime;
+	
 	@ManyToOne
 	@JoinColumn(name = "learner_id")
 	private Learner learner;
+	
 	@OneToOne
 	@JoinColumn(name = "course_id")
 	private Course course;

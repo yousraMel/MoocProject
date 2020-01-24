@@ -20,10 +20,12 @@ public class Badge {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idBadge;
-	private String title;
 	private String description;
 	@ManyToOne
 	@JoinColumn(name = "learner_id")
 	private Learner learner;
 
+	@ManyToOne
+	@JoinColumn(name = "course_id")
+	private Course course;
 }

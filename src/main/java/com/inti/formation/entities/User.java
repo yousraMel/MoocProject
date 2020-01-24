@@ -37,7 +37,6 @@ public class User implements Serializable {
 	private String password;
 	@Transient
 	private String passwordConfirm;
-	@ManyToMany
-	@JsonIgnore
-	private Set<Role> roles;
+	private String role;
+
 }

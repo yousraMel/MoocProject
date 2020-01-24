@@ -31,6 +31,7 @@ public class UserWebService {
 //			roles.add(roleservice.findByRoleName(roleName));
 //			user.setRoles(roles);
 			System.out.println(user);
+			
 			System.out.println(service.saveOrUpdateUser(user));
 			return service.saveOrUpdateUser(user);
 			
